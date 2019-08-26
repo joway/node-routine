@@ -26,10 +26,10 @@ npm install -S node-routine
 ## Quick Example
 
 ```javascript
-const { go, initWorkerPool } = require('./lib')
+const { go, init } = require('node-routine')
 
 // init a worker threads pool
-initWorkerPool({
+init({
   maxWorkerThreads: 2,
 })
 

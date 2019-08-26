@@ -1,7 +1,7 @@
-const { go, initWorkerPool } = require('./lib')
+const { go, init } = require('./lib')
 
 // init a worker threads pool
-initWorkerPool({
+init({
   maxWorkerThreads: 2,
 })
 

@@ -19,7 +19,7 @@ const workerPoolSetting: WorkerPoolSetting = {
   maxWorkerThreads: 4,
 }
 
-export function initWorkerPool(setting: WorkerPoolSetting = {}) {
+export function init(setting: WorkerPoolSetting = {}) {
   workerPoolSetting.maxWorkerThreads = setting.maxWorkerThreads || workerPoolSetting.maxWorkerThreads
 
   if (workerPoolSetting.maxWorkerThreads! <= 0) {
