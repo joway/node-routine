@@ -3,7 +3,7 @@ import { EventEmitter } from 'events'
 import { Worker } from 'worker_threads'
 
 export interface WorkerSetting {
-  MaxThreads?: number,
+  maxThreads?: number,
 }
 
 export interface WorkerState {
@@ -14,14 +14,18 @@ export interface WorkerState {
 
 const eventBus = new EventEmitter()
 const workerSetting: WorkerSetting = {
-  MaxThreads: 4,
+  maxThreads: 4,
 }
 const workerPool: WorkerState[] = []
 
 export function initWorker(setting: WorkerSetting = {}) {
-  workerSetting.MaxThreads = setting.MaxThreads || workerSetting.MaxThreads
+  workerSetting.maxThreads = setting.maxThreads || workerSetting.maxThreads
 
-  for (let i = 0; i < workerSetting.MaxThreads!; i++) {
+  if (workerSetting.maxThreads! <= 0) {
+    throw new Error('maxThreads should not <= 0!')
+  }
+
+  for (let i = 0; i < workerSetting.maxThreads!; i++) {
     const w = new Worker(path.resolve(__dirname, './worker.js'))
     w.on('message', (response) => {
       const { uid } = response
@@ -44,10 +48,14 @@ async () => {
 `
   const thread = selectWorker()
   const uid = randomStr()
+  thread.active += 1
   thread.worker.postMessage({ handler: workerStr, uid })
 
   return new Promise((resolve, reject) => {
     eventBus.on(`uid-${uid}`, (resp) => {
+      thread.active -= 1
+      thread.achieved += 1
+
       if (resp.error) {
         reject(resp.error)
       } else {
@@ -58,6 +66,7 @@ async () => {
 }
 
 function selectWorker() {
+  workerPool.sort((a, b) => (a.active - b.active))
   return workerPool[0]
 }
 
