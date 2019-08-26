@@ -41,7 +41,7 @@ export function initWorkerPool(setting: WorkerPoolSetting = {}) {
   }
 }
 
-export async function routine(handler: Function) {
+export async function go(handler: Function) {
   const routineStr = `
 async () => {
   return await (${handler.toString()})()
