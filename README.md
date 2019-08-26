@@ -17,6 +17,12 @@ node-routine is a library to implement [Goroutine-Like API](https://gobyexample.
 
 - Nodejs >= 11.7 or using `--experimental-worker` flag
 
+## Install
+
+```shell
+npm install -S node-routine
+```
+
 ## Quick Example
 
 ```javascript
