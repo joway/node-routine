@@ -1,15 +1,29 @@
 {
   "name": "node-routine",
   "description": "node-routine is a library to implement Goroutine-Like API with worker threads.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "author": {
-    "name": "JowayWang",
+    "name": "Joway Wang",
     "email": "joway.w@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joway/node-routine.git"
+  },
+  "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "files": [
     "lib/"
+  ],
+  "keywords": [
+    "nodejs",
+    "routine",
+    "goroutine",
+    "pool",
+    "worker",
+    "threads",
+    "worker_threads"
   ],
   "scripts": {
     "test": "tsc --noEmit && tslint \"src/**/*.ts?(x)\" && cross-env NODE_ENV=test jest --passWithNoTests",
