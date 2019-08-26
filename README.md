@@ -9,6 +9,10 @@
 
 node-routine is a library to implement [Goroutine-Like API](https://gobyexample.com/goroutines) with [worker_threads](https://nodejs.org/api/worker_threads.html).
 
+## Architecture
+
+![](architecture.png)
+
 ## Requirement
 
 - Nodejs >= 11.7 or using `--experimental-worker` flag
@@ -39,6 +43,5 @@ async function calc() {
 
 calc()
 ```
-
 
 
