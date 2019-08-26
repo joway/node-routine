@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "lib": ["dom"],
+    "types": ["node"],
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "target": "esnext",
+    "declaration": true,
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": ["**/*.test.tsx", "**/*.test.ts", "**/test.tsx", "**/test.ts"],
+  "include": ["src/**/*.tsx", "src/**/*.ts"]
+}

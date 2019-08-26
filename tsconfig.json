@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["dom"],
+    "types": ["node"],
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "target": "esnext"
+  }
+}
