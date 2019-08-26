@@ -1,9 +1,10 @@
 import * as path from 'path'
 import { EventEmitter } from 'events'
 import { Worker } from 'worker_threads'
+import * as crypto from 'crypto'
 
-export interface WorkerSetting {
-  maxThreads?: number,
+export interface WorkerPoolSetting {
+  maxWorkerThreads?: number,
 }
 
 export interface WorkerState {
@@ -13,19 +14,19 @@ export interface WorkerState {
 }
 
 const eventBus = new EventEmitter()
-const workerSetting: WorkerSetting = {
-  maxThreads: 4,
-}
 const workerPool: WorkerState[] = []
+const workerPoolSetting: WorkerPoolSetting = {
+  maxWorkerThreads: 4,
+}
 
-export function initWorker(setting: WorkerSetting = {}) {
-  workerSetting.maxThreads = setting.maxThreads || workerSetting.maxThreads
+export function initWorkerPool(setting: WorkerPoolSetting = {}) {
+  workerPoolSetting.maxWorkerThreads = setting.maxWorkerThreads || workerPoolSetting.maxWorkerThreads
 
-  if (workerSetting.maxThreads! <= 0) {
-    throw new Error('maxThreads should not <= 0!')
+  if (workerPoolSetting.maxWorkerThreads! <= 0) {
+    throw new Error('maxWorkerThreads should not <= 0!')
   }
 
-  for (let i = 0; i < workerSetting.maxThreads!; i++) {
+  for (let i = 0; i < workerPoolSetting.maxWorkerThreads!; i++) {
     const w = new Worker(path.resolve(__dirname, './worker.js'))
     w.on('message', (response) => {
       const { uid } = response
@@ -40,21 +41,21 @@ export function initWorker(setting: WorkerSetting = {}) {
   }
 }
 
-export async function worker(handler: Function) {
-  const workerStr = `
+export async function routine(handler: Function) {
+  const routineStr = `
 async () => {
   return await (${handler.toString()})()
 }
 `
-  const thread = selectWorker()
+  const worker = selectWorker()
   const uid = randomStr()
-  thread.active += 1
-  thread.worker.postMessage({ handler: workerStr, uid })
+  worker.active += 1
+  worker.worker.postMessage({ handler: routineStr, uid })
 
   return new Promise((resolve, reject) => {
     eventBus.on(`uid-${uid}`, (resp) => {
-      thread.active -= 1
-      thread.achieved += 1
+      worker.active -= 1
+      worker.achieved += 1
 
       if (resp.error) {
         reject(resp.error)
@@ -70,6 +71,6 @@ function selectWorker() {
   return workerPool[0]
 }
 
-function randomStr() {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+function randomStr(len: number = 12) {
+  return crypto.randomBytes(len / 2).toString('hex')
 }

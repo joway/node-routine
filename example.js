@@ -1,11 +1,13 @@
-const { worker, initWorker } = require('./lib')
+const { routine, initWorkerPool } = require('./lib')
 
-initWorker({
-  maxThreads: 2,
+// init a worker threads pool
+initWorkerPool({
+  maxWorkerThreads: 2,
 })
 
 async function calc() {
-  const num = await worker(() => {
+  // every routine will be executed in worker threads pool
+  const num = await routine(() => {
     const count = 10000
     let total = 0
     for (let i = 0; i < count; ++i) {
