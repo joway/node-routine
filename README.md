@@ -9,13 +9,20 @@
 
 node-routine is a library to implement [Goroutine-Like API](https://gobyexample.com/goroutines) with [worker_threads](https://nodejs.org/api/worker_threads.html).
 
+Compared to using the worker threads low level API directly, node-routine can make your codes more elegantly, like:
+
+```
+await go(() => (Math.random()))
+```
+
 ## Architecture
 
 ![](architecture.png)
 
 ## Requirement
 
-- Nodejs >= 11.7 or using `--experimental-worker` flag
+- Nodejs >= 11.7
+- Nodejs >= 10.5 with `--experimental-worker` flag
 
 ## Install
 
