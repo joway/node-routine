@@ -1,4 +1,4 @@
-const { go, init } = require('./lib')
+const { go, init, shutdown } = require('./dist/src')
 
 // init a worker threads pool
 init({
@@ -30,5 +30,5 @@ async function main() {
 
 main().then(() => {
   console.log('Finished')
-  process.exit(0)
+  shutdown()
 })

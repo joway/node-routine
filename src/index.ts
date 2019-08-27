@@ -8,7 +8,8 @@ export interface WorkerPoolSetting {
 }
 
 export interface WorkerState {
-  worker: Worker,
+  id: number,
+  instance: Worker,
   active: number,
   achieved: number,
 }
@@ -34,23 +35,35 @@ export function init(setting: WorkerPoolSetting = {}) {
     })
 
     workerPool.push({
-      worker: w,
+      id: i,
+      instance: w,
       active: 0,
       achieved: 0,
     })
   }
 }
 
-export async function go(handler: Function) {
+export async function go(handler: Function, context: Object = {}) {
+  let definition = ''
+  for (const key in context) {
+    if (!context.hasOwnProperty(key)) continue
+
+    definition += `const ${key} = ${JSON.stringify(context[key])};\n`
+  }
   const routineStr = `
 async () => {
+  ${definition}
   return await (${handler.toString()})()
 }
 `
   const worker = selectWorker()
   const uid = randomStr()
   worker.active += 1
-  worker.worker.postMessage({ handler: routineStr, uid })
+  worker.instance.postMessage({
+    uid,
+    workerId: worker.id,
+    handler: routineStr,
+  })
 
   return new Promise((resolve, reject) => {
     eventBus.on(`uid-${uid}`, (resp) => {
@@ -64,6 +77,12 @@ async () => {
       }
     })
   })
+}
+
+export async function shutdown() {
+  for (const { instance } of workerPool) {
+    await instance.terminate()
+  }
 }
 
 function selectWorker() {

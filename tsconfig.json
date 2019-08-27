@@ -1,13 +1,21 @@
 {
+  "exclude": [
+    "dist",
+    "node_modules",
+    "tests"
+  ],
+  "compileOnSave": true,
   "compilerOptions": {
-    "noEmit": true,
-    "lib": ["dom"],
-    "types": ["node"],
-    "moduleResolution": "node",
-    "strict": true,
-    "noImplicitReturns": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "target": "esnext"
+    "outDir": "dist",
+    "rootDir": "./",
+    "module": "commonjs",
+    "sourceMap": true,
+    "declaration": true,
+    "target": "es6",
+    "strictNullChecks": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "strict": false
   }
 }
