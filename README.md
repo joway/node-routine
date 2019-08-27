@@ -1,6 +1,6 @@
 # node-routine
 
-<img width="200px;" src="logo.png" />
+<img width="200px;" src="public/logo.png" />
 
 [![npm](https://img.shields.io/npm/v/node-routine.svg)](https://www.npmjs.com/package/node-routine)
 [![npm](https://img.shields.io/npm/dt/node-routine.svg)](https://www.npmjs.com/package/node-routine)
@@ -17,7 +17,7 @@ await go(() => (Math.random()))
 
 ## Architecture
 
-![](architecture.png)
+![](public/architecture.png)
 
 ## Requirement
 

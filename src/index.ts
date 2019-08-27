@@ -3,11 +3,12 @@ import { EventEmitter } from 'events'
 import { Worker } from 'worker_threads'
 import * as crypto from 'crypto'
 
+/** Setting of worker threads pool */
 export interface WorkerPoolSetting {
   maxWorkerThreads?: number,
 }
 
-export interface WorkerState {
+interface WorkerState {
   id: number,
   instance: Worker,
   active: number,
@@ -20,6 +21,9 @@ const workerPoolSetting: WorkerPoolSetting = {
   maxWorkerThreads: 4,
 }
 
+/**
+ * @param setting  Custom setting
+ */
 export function init(setting: WorkerPoolSetting = {}) {
   workerPoolSetting.maxWorkerThreads = setting.maxWorkerThreads || workerPoolSetting.maxWorkerThreads
 
@@ -43,6 +47,12 @@ export function init(setting: WorkerPoolSetting = {}) {
   }
 }
 
+/**
+ * @param handler  routine function
+ * @param context  variables defined in context
+ * 
+ * @returns        handler function result
+ */
 export async function go(handler: Function, context: Object = {}) {
   let definition = ''
   for (const key in context) {
@@ -79,6 +89,9 @@ async () => {
   })
 }
 
+/**
+ * Shutdown worker threads pool
+ */
 export async function shutdown() {
   for (const { instance } of workerPool) {
     await instance.terminate()

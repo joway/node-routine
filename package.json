@@ -30,7 +30,8 @@
     "test": "npm run build && jest --detectOpenHandles --verbose",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && tsc",
-    "prepublish": "npm run build"
+    "doc": "typedoc && cp -r public ./docs/public",
+    "prepublish": "npm run build && npm run doc"
   },
   "precommit": [
     "prettier"
@@ -47,6 +48,7 @@
     "request-promise": "^4.2.4",
     "ts-jest": "^24.0.0",
     "tslint-jike-node": "0.0.17",
+    "typedoc": "^0.15.0",
     "typescript": "^3.3.4000"
   },
   "dependencies": {}

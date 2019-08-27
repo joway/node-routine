@@ -1,0 +1,3 @@
+var typedoc = typedoc || {};
+            typedoc.search = typedoc.search || {};
+            typedoc.search.data = {"kinds":{"64":"Function","256":"Interface","1024":"Property"},"rows":[{"id":0,"kind":256,"name":"WorkerPoolSetting","url":"interfaces/workerpoolsetting.html","classes":"tsd-kind-interface"},{"id":1,"kind":1024,"name":"maxWorkerThreads","url":"interfaces/workerpoolsetting.html#maxworkerthreads","classes":"tsd-kind-property tsd-parent-kind-interface","parent":"WorkerPoolSetting"},{"id":2,"kind":64,"name":"init","url":"globals.html#init","classes":"tsd-kind-function"},{"id":3,"kind":64,"name":"go","url":"globals.html#go","classes":"tsd-kind-function"},{"id":4,"kind":64,"name":"shutdown","url":"globals.html#shutdown","classes":"tsd-kind-function"}]};
