@@ -30,7 +30,7 @@
     "test": "npm run build && jest --detectOpenHandles --verbose",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && tsc",
-    "doc": "typedoc && cp -r public ./docs/public",
+    "doc": "typedoc && cp -r public ./docs/public && cp CNAME ./docs",
     "prepublish": "npm run build && npm run doc"
   },
   "precommit": [
