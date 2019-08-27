@@ -15,6 +15,10 @@ Compared to using the worker threads low level API directly, node-routine can ma
 await go(() => (Math.random()))
 ```
 
+## Documentation
+
+[Documentation](https://routine.joway.io)
+
 ## Architecture
 
 ![](public/architecture.png)
