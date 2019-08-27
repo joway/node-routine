@@ -57,7 +57,7 @@ async () => {
 }
 `
   const worker = selectWorker()
-  const uid = randomStr()
+  const uid = genUid()
   worker.active += 1
   worker.instance.postMessage({
     uid,
@@ -90,6 +90,6 @@ function selectWorker() {
   return workerPool[0]
 }
 
-function randomStr(len: number = 12) {
-  return crypto.randomBytes(len / 2).toString('hex')
+function genUid() {
+  return crypto.randomBytes(12).toString('hex')
 }
