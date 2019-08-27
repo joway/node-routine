@@ -33,7 +33,7 @@ npm install -S node-routine
 ## Quick Example
 
 ```javascript
-const { go, init } = require('node-routine')
+const { go, init, shutdown } = require('node-routine')
 
 // init a worker threads pool
 init({
@@ -42,17 +42,38 @@ init({
 
 async function calc() {
   // every routine will be executed in worker threads pool
+  const count = 10000
   const num = await go(() => {
-    const count = 10000
     let total = 0
     for (let i = 0; i < count; ++i) {
       total += i
     }
     return total
-  })
+  }, { count })
 
   return num
 }
 
-calc()
+calc().then((total) => {
+  console.log('Got', total)
+  shutdown()
+})
+```
+
+## Benchmark
+
+- [node-routine](https://github.com/joway/node-routine)
+- [microjob](https://github.com/wilk/microjob)
+
+[Benchmark Code](bench/bench.ts)
+
+Env: Macbook Pro, 13-inch, 2018, 2.3 GHz Intel Core i5
+
+Commend: `npm run bench`
+
+```
+  ✓ CPU intensive task using microjob (14ms)
+  ✓ CPU intensive task using node-routine (4ms)
+  ✓ IO intensive task using microjob (20163ms)
+  ✓ IO intensive task using node-routine (5224ms)
 ```

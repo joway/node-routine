@@ -26,7 +26,8 @@
     "worker_threads"
   ],
   "scripts": {
-    "test": "npm run build && jest --detectOpenHandles",
+    "bench": "npm run build && jest --detectOpenHandles --verbose --testRegex=./bench/bench.ts",
+    "test": "npm run build && jest --detectOpenHandles --verbose",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && tsc",
     "prepublish": "npm run build"
@@ -42,6 +43,7 @@
     "bluebird": "^3.5.3",
     "jest": "^24.5.0",
     "jest-localstorage-mock": "^2.4.0",
+    "microjob": "^0.6.1",
     "request-promise": "^4.2.4",
     "ts-jest": "^24.0.0",
     "tslint-jike-node": "0.0.17",

@@ -2,7 +2,8 @@
   "exclude": [
     "dist",
     "node_modules",
-    "tests"
+    "tests",
+    "bench"
   ],
   "compileOnSave": true,
   "compilerOptions": {
@@ -11,7 +12,7 @@
     "module": "commonjs",
     "sourceMap": true,
     "declaration": true,
-    "target": "es6",
+    "target": "es2017",
     "strictNullChecks": true,
     "typeRoots": [
       "node_modules/@types"
