@@ -67,7 +67,7 @@ calc().then((total) => {
 - [node-routine](https://github.com/joway/node-routine)
 - [microjob](https://github.com/wilk/microjob)
 
-[Benchmark Code](bench/bench.ts)
+[Benchmark Code](bench/job.ts)
 
 Env: Macbook Pro, 13-inch, 2018, 2.3 GHz Intel Core i5
 

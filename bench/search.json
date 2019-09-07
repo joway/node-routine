@@ -1,0 +1,889 @@
+{
+  "hits": [
+    {
+      "created_at": "2013-02-18T18:26:05.000Z",
+      "title": "Why HN was down",
+      "url": "",
+      "author": "pg",
+      "points": 1027,
+      "story_text": "Hacker News was down all last night.  The problem was not due to\nthe new server.  In fact the cause was embarrassingly stupid.\u003cp\u003eOn a comment thread, a new user had posted some replies as siblings\ninstead of children.  I posted a comment explaining how HN worked.\nBut then I decided to just fix it for him by doing some surgery in\nthe repl.  Unfortunately I used the wrong id for one of the comments\nand created a loop in the comment tree; I caused an item to be its\nown grandchild.  After which, when anyone tried to view the thread,\nthe server would try to generate an infinitely long page.  The\nstory in question was on the frontpage, so this happened a lot.\u003cp\u003eFor some reason I didn't check the comments after the surgery to\nsee if they were in the right place. I must have been distracted\nby something.  So I didn't notice anything was wrong till a bit\nlater when the server seemed to be swamped.\u003cp\u003eWhen I tailed the logs to see what was going on, the pattern looked\na lot like what happens when HN runs short of memory and starts\nGCing too much.  Whether it was that or something else, such problems\ncan usually be fixed by restarting HN.  So that's what I did.  But\nfirst, since I had been writing code that day, I pushed the latest\nversion to the server.  As long as I was going to have to restart\nHN, I might as well get a fresh version.\u003cp\u003eAfter I restarted HN, the problem was still there.  So I guessed\nthe problem must be due to something in the code I'd written that\nday, and tried reverting to the previous version, and restarting the\nserver again.  But the problem was still there.  Then we (because\nby this point I'd managed to get hold of Nick Sivo, YC's hacker in\nresidence) tried reverting to the version of HN that was on the old\nserver, and that didn't work either.  We knew that code had worked\nfine, so we figured the problem must be with the new server.  So\nwe tried to switch back to the old server.  I don't know if Nick\nsucceeded, because in the middle of this I gave up and went to bed.\u003cp\u003eWhen I woke up this morning, Rtm had HN running on the new server.\nThe bad thread was still there, but it had been pushed off the\nfrontpage by newer stuff.  So HN as a whole wasn't dying, but there\nwere still signs something was amiss, e.g.  that /threads?id=pg\ndidn't work, because of the comment I made on the thread with the\nloop in it.\u003cp\u003eEventually Rtm noticed that the problem seemed to be related to a\ncertain item id.  When I looked at the item on disk I realized what\nmust have happened.\u003cp\u003eSo I did some more surgery in the repl, this time more carefully,\nand everything seems fine now.\u003cp\u003eSorry about that.",
+      "comment_text": null,
+      "num_comments": 292,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1361211965,
+      "relevancy_score": 4463,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_5239673"
+      ],
+      "objectID": "5239673",
+      "_highlightResult": {
+        "title": {
+          "value": "Why HN was down",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "Hacker News was down all last night.  The problem was not due to\nthe new server.  In fact the cause was embarrassingly stupid.\u003cp\u003eOn a comment thread, a new user had posted some replies as siblings\ninstead of children.  I posted a comment explaining how HN worked.\nBut then I decided to just fix it for him by doing some surgery in\nthe repl.  Unfortunately I used the wrong id for one of the comments\nand created a loop in the comment tree; I caused an item to be its\nown grandchild.  After which, when anyone tried to view the thread,\nthe server would try to generate an infinitely long page.  The\nstory in question was on the frontpage, so this happened a lot.\u003cp\u003eFor some reason I didn't check the comments after the surgery to\nsee if they were in the right place. I must have been distracted\nby something.  So I didn't notice anything was wrong till a bit\nlater when the server seemed to be swamped.\u003cp\u003eWhen I tailed the logs to see what was going on, the pattern looked\na lot like what happens when HN runs short of memory and starts\nGCing too much.  Whether it was that or something else, such problems\ncan usually be fixed by restarting HN.  So that's what I did.  But\nfirst, since I had been writing code that day, I pushed the latest\nversion to the server.  As long as I was going to have to restart\nHN, I might as well get a fresh version.\u003cp\u003eAfter I restarted HN, the problem was still there.  So I guessed\nthe problem must be due to something in the code I'd written that\nday, and tried reverting to the previous version, and restarting the\nserver again.  But the problem was still there.  Then we (because\nby this point I'd managed to get hold of Nick Sivo, YC's hacker in\nresidence) tried reverting to the version of HN that was on the old\nserver, and that didn't work either.  We knew that code had worked\nfine, so we figured the problem must be with the new server.  So\nwe tried to switch back to the old server.  I don't know if Nick\nsucceeded, because in the middle of this I gave up and went to bed.\u003cp\u003eWhen I woke up this morning, Rtm had HN running on the new server.\nThe bad thread was still there, but it had been pushed off the\nfrontpage by newer stuff.  So HN as a whole wasn't dying, but there\nwere still signs something was amiss, e.g.  that /threads?id=pg\ndidn't work, because of the comment I made on the thread with the\nloop in it.\u003cp\u003eEventually Rtm noticed that the problem seemed to be related to a\ncertain item id.  When I looked at the item on disk I realized what\nmust have happened.\u003cp\u003eSo I did some more surgery in the repl, this time more carefully,\nand everything seems fine now.\u003cp\u003eSorry about that.",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2012-01-18T18:46:33.000Z",
+      "title": "No New Accounts Today",
+      "url": "",
+      "author": "pg",
+      "points": 703,
+      "story_text": "Traffic is unprecedentedly high today, presumably because Reddit is blacked out.  I don't want to repay them for their impressive stand by stealing their users, so I've temporarily turned off the ability to create new accounts.",
+      "comment_text": null,
+      "num_comments": 94,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1326912393,
+      "relevancy_score": 3697,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_3481174"
+      ],
+      "objectID": "3481174",
+      "_highlightResult": {
+        "title": {
+          "value": "No New Accounts Today",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "Traffic is unprecedentedly high today, presumably because Reddit is blacked out.  I don't want to repay them for their impressive stand by stealing their users, so I've temporarily turned off the ability to create new accounts.",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-01-25T20:17:44.000Z",
+      "title": "Meet Watsi, Y Combinator's First Nonprofit",
+      "url": "http://ycombinator.com/watsi.html",
+      "author": "pg",
+      "points": 690,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 168,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1359145064,
+      "relevancy_score": 4409,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_5117385"
+      ],
+      "objectID": "5117385",
+      "_highlightResult": {
+        "title": {
+          "value": "Meet Watsi, Y Combinator's First Nonprofit",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://ycombinator.com/watsi.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2012-03-13T22:41:20.000Z",
+      "title": "New: Apply to Y Combinator without an Idea",
+      "url": "http://ycombinator.com/noidea.html",
+      "author": "pg",
+      "points": 682,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 295,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1331678480,
+      "relevancy_score": 3805,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_3700712"
+      ],
+      "objectID": "3700712",
+      "_highlightResult": {
+        "title": {
+          "value": "New: Apply to Y Combinator without an Idea",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://ycombinator.com/noidea.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2014-03-21T23:49:31.000Z",
+      "title": "Coming Soon to Hacker News: Pending Comments",
+      "url": "",
+      "author": "pg",
+      "points": 603,
+      "story_text": "A surprisingly long time ago (2013 was a busy year) I\\nmentioned a new plan to improve the quality of comments on\\nHacker News:\u003cp\u003ehttps:\u0026#x2F;\u0026#x2F;news.ycombinator.com\u0026#x2F;item?id=6009523\u003cp\u003eSince I\u0026#x27;m going to check out of HN at the end of this\\nYC cycle, this was my last chance to get this done.\\nI didn\u0026#x27;t want the people who are going to inherit\\nHN from me to have to build it as their\\nfirst project, because it interacts with so many\\ndifferent bits of the code in such subtle ways.\u003cp\u003eSo I found time to implement pending comments this\\npast week, and with any luck it will launch tonight.\\nSince it\u0026#x27;s a big change, I wanted to warn HN users in\\nadvance.\u003cp\u003eHere\u0026#x27;s how it currently works.  From now on, when\\nyou post a comment, it won\u0026#x27;t initially be live.\\nIt will be in a new state called pending.  Comments\\nget from pending to live by being endorsed by multiple\\nHN users with over 1000 karma.  Those users will see\\npending comments, and will be able to endorse them by\\nclicking on an \u0026quot;endorse\u0026quot; link next to the \u0026quot;flag\u0026quot; link.\u003cp\u003eSomeone who has a pending comment will have to wait till\\nit goes live to post another.  We\u0026#x27;re hoping that good\\ncomments will get endorsed so quickly that there won\u0026#x27;t\\nbe a noticeable delay.\u003cp\u003eYou can currently beat the system by posting an innocuous\\ncomment, waiting for it to be endorsed, and then after\\nit\u0026#x27;s live, changing it to say something worse. We explicitly\\nask people not to do this.  While we have no software\\nfor catching it, humans will notice, and we\u0026#x27;ll ban you.\u003cp\u003eAlong with the change in software will come a change in\\npolicy.  We\u0026#x27;re going to ask users with the ability to\\nendorse comments only to endorse those that:\u003cp\u003e1. Say something substantial.  E.g. not just a throwaway remark,\\nor the kind of \u0026quot;Yes you did, No I didn\u0026#x27;t\u0026quot; bickering\\nthat races toward the right side of the page and no\\none cares about except the participants.\u003cp\u003e2. Say it without gratuitous nastiness.  In particular,\\na comment in reply to another comment should be written\\nin the spirit of colleagues cooperating in good faith\\nto figure out the truth about something, not\\npoliticians trying to ridicule and misrepresent\\nthe other side.\u003cp\u003ePeople who regularly endorse comments that fail one\\nor both of these tests will lose the ability to\\nendorse comments.  So if you\u0026#x27;re not sure whether you\\nshould endorse a comment, don\u0026#x27;t.  There are a lot of\\npeople on HN.  If a point is important, someone else\\nwill probably come along and make it without gratuitous\\nnastiness.\u003cp\u003eI hope this will improve the quality of HN comments\\nsignificantly, but we\u0026#x27;ll need your help to make it work,\\nand your forbearance if, as usually happens, some\\nthings go wrong initially.",
+      "comment_text": null,
+      "num_comments": 804,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1395445771,
+      "relevancy_score": 5216,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_7445761"
+      ],
+      "objectID": "7445761",
+      "_highlightResult": {
+        "title": {
+          "value": "Coming Soon to Hacker News: Pending Comments",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "A surprisingly long time ago (2013 was a busy year) I\\nmentioned a new plan to improve the quality of comments on\\nHacker News:\u003cp\u003ehttps://news.ycombinator.com/item?id=6009523\u003cp\u003eSince I'm going to check out of HN at the end of this\\nYC cycle, this was my last chance to get this done.\\nI didn't want the people who are going to inherit\\nHN from me to have to build it as their\\nfirst project, because it interacts with so many\\ndifferent bits of the code in such subtle ways.\u003cp\u003eSo I found time to implement pending comments this\\npast week, and with any luck it will launch tonight.\\nSince it's a big change, I wanted to warn HN users in\\nadvance.\u003cp\u003eHere's how it currently works.  From now on, when\\nyou post a comment, it won't initially be live.\\nIt will be in a new state called pending.  Comments\\nget from pending to live by being endorsed by multiple\\nHN users with over 1000 karma.  Those users will see\\npending comments, and will be able to endorse them by\\nclicking on an \u0026quot;endorse\u0026quot; link next to the \u0026quot;flag\u0026quot; link.\u003cp\u003eSomeone who has a pending comment will have to wait till\\nit goes live to post another.  We're hoping that good\\ncomments will get endorsed so quickly that there won't\\nbe a noticeable delay.\u003cp\u003eYou can currently beat the system by posting an innocuous\\ncomment, waiting for it to be endorsed, and then after\\nit's live, changing it to say something worse. We explicitly\\nask people not to do this.  While we have no software\\nfor catching it, humans will notice, and we'll ban you.\u003cp\u003eAlong with the change in software will come a change in\\npolicy.  We're going to ask users with the ability to\\nendorse comments only to endorse those that:\u003cp\u003e1. Say something substantial.  E.g. not just a throwaway remark,\\nor the kind of \u0026quot;Yes you did, No I didn't\u0026quot; bickering\\nthat races toward the right side of the page and no\\none cares about except the participants.\u003cp\u003e2. Say it without gratuitous nastiness.  In particular,\\na comment in reply to another comment should be written\\nin the spirit of colleagues cooperating in good faith\\nto figure out the truth about something, not\\npoliticians trying to ridicule and misrepresent\\nthe other side.\u003cp\u003ePeople who regularly endorse comments that fail one\\nor both of these tests will lose the ability to\\nendorse comments.  So if you're not sure whether you\\nshould endorse a comment, don't.  There are a lot of\\npeople on HN.  If a point is important, someone else\\nwill probably come along and make it without gratuitous\\nnastiness.\u003cp\u003eI hope this will improve the quality of HN comments\\nsignificantly, but we'll need your help to make it work,\\nand your forbearance if, as usually happens, some\\nthings go wrong initially.",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2014-03-29T20:43:24.000Z",
+      "title": "Meet the People Taking over Hacker News",
+      "url": "http://blog.ycombinator.com/meet-the-people-taking-over-hacker-news",
+      "author": "pg",
+      "points": 578,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 286,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1396125804,
+      "relevancy_score": 5229,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_7493856"
+      ],
+      "objectID": "7493856",
+      "_highlightResult": {
+        "title": {
+          "value": "Meet the People Taking over Hacker News",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://blog.ycombinator.com/meet-the-people-taking-over-hacker-news",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2010-09-27T20:24:25.000Z",
+      "title": "What Happens At Y Combinator",
+      "url": "http://ycombinator.com/atyc.html",
+      "author": "pg",
+      "points": 549,
+      "story_text": null,
+      "comment_text": null,
+      "num_comments": 143,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1285619065,
+      "relevancy_score": 2783,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_1733236"
+      ],
+      "objectID": "1733236",
+      "_highlightResult": {
+        "title": {
+          "value": "What Happens At Y Combinator",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://ycombinator.com/atyc.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2008-07-19T16:33:35.000Z",
+      "title": "Startup Ideas We'd Like to Fund",
+      "url": "http://ycombinator.com/ideas.html",
+      "author": "pg",
+      "points": 532,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 380,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1216485215,
+      "relevancy_score": 1238,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_250704"
+      ],
+      "objectID": "250704",
+      "_highlightResult": {
+        "title": {
+          "value": "Startup Ideas We'd Like to Fund",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://ycombinator.com/ideas.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2009-01-31T06:36:50.000Z",
+      "title": "New users: Welcome.  Please read the site guidelines.",
+      "url": "",
+      "author": "pg",
+      "points": 532,
+      "story_text": "There's been a big spike in new users the last couple days.\nUnfortunately it's been visible not only in the traffic stats\nbut in the character of the comment threads.\u003cp\u003eNew users: we'd appreciate it if you'd please read the site\nguidelines before commenting.  Most importantly, the principle\nthat you shouldn't say anything in a comment that you\nwouldn't say to someone's face.\u003cp\u003ehttp://ycombinator.com/newsguidelines.html\u003cp\u003eHacker News is an experiment.  We're\ntrying to see whether by asking people to be civil we can \navoid the kind of nastiness that anonymity breeds by default.\nThe experiment has worked so far.  And while the new users\nmay not realize it, this is why they're here.  People like it here because one can have a civil conversation.\u003cp\u003eThe principle that you shouldn't say things you wouldn't\nsay to someone's face means you can't express yourself the\nway you might be used to doing on Reddit or Slashdot.\nThis, for example, would not stand out on either of those\nsites,\u003cp\u003ehttp://news.ycombinator.com/item?id=459250\u003cp\u003ebut it's not cool here.",
+      "comment_text": null,
+      "num_comments": 137,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1233383810,
+      "relevancy_score": 1614,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_459289"
+      ],
+      "objectID": "459289",
+      "_highlightResult": {
+        "title": {
+          "value": "New users: Welcome.  Please read the site guidelines.",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "There's been a big spike in new users the last couple days.\nUnfortunately it's been visible not only in the traffic stats\nbut in the character of the comment threads.\u003cp\u003eNew users: we'd appreciate it if you'd please read the site\nguidelines before commenting.  Most importantly, the principle\nthat you shouldn't say anything in a comment that you\nwouldn't say to someone's face.\u003cp\u003ehttp://ycombinator.com/newsguidelines.html\u003cp\u003eHacker News is an experiment.  We're\ntrying to see whether by asking people to be civil we can \navoid the kind of nastiness that anonymity breeds by default.\nThe experiment has worked so far.  And while the new users\nmay not realize it, this is why they're here.  People like it here because one can have a civil conversation.\u003cp\u003eThe principle that you shouldn't say things you wouldn't\nsay to someone's face means you can't express yourself the\nway you might be used to doing on Reddit or Slashdot.\nThis, for example, would not stand out on either of those\nsites,\u003cp\u003ehttp://news.ycombinator.com/item?id=459250\u003cp\u003ebut it's not cool here.",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-03-14T16:27:29.000Z",
+      "title": "The Handshake Deal Protocol",
+      "url": "http://ycombinator.com/hdp.html",
+      "author": "pg",
+      "points": 513,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 216,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1363278449,
+      "relevancy_score": 4503,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_5375929"
+      ],
+      "objectID": "5375929",
+      "_highlightResult": {
+        "title": {
+          "value": "The Handshake Deal Protocol",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://ycombinator.com/hdp.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2011-06-01T17:55:17.000Z",
+      "title": "Y Combinator Numbers",
+      "url": "http://ycombinator.com/nums.html",
+      "author": "pg",
+      "points": 498,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 116,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1306950917,
+      "relevancy_score": 3254,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_2608440"
+      ],
+      "objectID": "2608440",
+      "_highlightResult": {
+        "title": {
+          "value": "Y Combinator Numbers",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://ycombinator.com/nums.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2011-04-03T20:05:27.000Z",
+      "title": "Ask HN: How to stave off decline of HN?",
+      "url": "",
+      "author": "pg",
+      "points": 462,
+      "story_text": "I was just asking RiderofGiraffes if he had any suggestions for fixing the decreasing quality of comment threads on HN (http://news.ycombinator.com/item?id=2403449) and it occurred to me that I might as well ask everyone.\u003cp\u003eAnyone have any suggestions?  We're on mostly uncharted territory here.\u003cp\u003eThe problem has several components: comments that are (a) mean and/or (b) dumb that (c) get massively upvoted.",
+      "comment_text": null,
+      "num_comments": 685,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1301861127,
+      "relevancy_score": 3133,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_2403696",
+        "ask_hn"
+      ],
+      "objectID": "2403696",
+      "_highlightResult": {
+        "title": {
+          "value": "Ask HN: How to stave off decline of HN?",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "I was just asking RiderofGiraffes if he had any suggestions for fixing the decreasing quality of comment threads on HN (http://news.ycombinator.com/item?id=2403449) and it occurred to me that I might as well ask everyone.\u003cp\u003eAnyone have any suggestions?  We're on mostly uncharted territory here.\u003cp\u003eThe problem has several components: comments that are (a) mean and/or (b) dumb that (c) get massively upvoted.",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-03-12T17:24:32.000Z",
+      "title": "Official Hacker News T-Shirt",
+      "url": "http://teespring.com/hntees",
+      "author": "pg",
+      "points": 454,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 314,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1363109072,
+      "relevancy_score": 4503,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_5363290"
+      ],
+      "objectID": "5363290",
+      "_highlightResult": {
+        "title": {
+          "value": "Official Hacker News T-Shirt",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://teespring.com/hntees",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-04-14T17:11:59.000Z",
+      "title": "Ask HN: Why would a government have created bitcoin?",
+      "url": "",
+      "author": "pg",
+      "points": 448,
+      "story_text": "I've long suspected bitcoin was created by a government.  Bulletproof protocols usually require peer review, yet there have been zero leaks from the reviewers.  Pools of crypto guys who don't leak stuff are usually employed by governments.\u003cp\u003eThe part that puzzles me is why a government would do this.  I can imagine several possibilities:\u003cp\u003e1. To finance their own black operations.\u003cp\u003e2. Because they thought digital currencies were inevitable, and they preferred bitcoin to some potentially more malevolent form.  (Could bitcoin have been worse from a government's point of view?)\u003cp\u003e3. A friend suggested this: because they felt their currency would never become the standard reserve currency, and they felt it was better that no one's be if theirs couldn't be.\u003cp\u003e4. A variant of the above: the US did it because it seemed inevitable that the dollar would eventually lose its place as the standard reserve currency, and better to have it replaced by bitcoin that the yuan.\u003cp\u003eI realize some of these explanations are pretty far fetched, but so is an individual cooking up bitcoin as an intellectual exercise.  Whatever the explanation of bitcoin's origin turns out to be, it will probably be pretty weird.\u003cp\u003eAnyone have opinions about these possible explanations, or other ones?",
+      "comment_text": null,
+      "num_comments": 298,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1365959519,
+      "relevancy_score": 4557,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_5547423",
+        "ask_hn"
+      ],
+      "objectID": "5547423",
+      "_highlightResult": {
+        "title": {
+          "value": "Ask HN: Why would a government have created bitcoin?",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "I've long suspected bitcoin was created by a government.  Bulletproof protocols usually require peer review, yet there have been zero leaks from the reviewers.  Pools of crypto guys who don't leak stuff are usually employed by governments.\u003cp\u003eThe part that puzzles me is why a government would do this.  I can imagine several possibilities:\u003cp\u003e1. To finance their own black operations.\u003cp\u003e2. Because they thought digital currencies were inevitable, and they preferred bitcoin to some potentially more malevolent form.  (Could bitcoin have been worse from a government's point of view?)\u003cp\u003e3. A friend suggested this: because they felt their currency would never become the standard reserve currency, and they felt it was better that no one's be if theirs couldn't be.\u003cp\u003e4. A variant of the above: the US did it because it seemed inevitable that the dollar would eventually lose its place as the standard reserve currency, and better to have it replaced by bitcoin that the yuan.\u003cp\u003eI realize some of these explanations are pretty far fetched, but so is an individual cooking up bitcoin as an intellectual exercise.  Whatever the explanation of bitcoin's origin turns out to be, it will probably be pretty weird.\u003cp\u003eAnyone have opinions about these possible explanations, or other ones?",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-09-06T17:30:09.000Z",
+      "title": "YC Will Now Fund Nonprofits Too",
+      "url": "http://ycombinator.com/np.html",
+      "author": "pg",
+      "points": 439,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 110,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1378488609,
+      "relevancy_score": 4839,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_6341568"
+      ],
+      "objectID": "6341568",
+      "_highlightResult": {
+        "title": {
+          "value": "YC Will Now Fund Nonprofits Too",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://ycombinator.com/np.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-02-20T22:21:20.000Z",
+      "title": "HN is 6 today.  Here's traffic since the beginning",
+      "url": "http://www.ycombinator.com/images/hn6.png",
+      "author": "pg",
+      "points": 436,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 115,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1361398880,
+      "relevancy_score": 4463,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_5253773"
+      ],
+      "objectID": "5253773",
+      "_highlightResult": {
+        "title": {
+          "value": "HN is 6 today.  Here's traffic since the beginning",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://www.ycombinator.com/images/hn6.png",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2012-03-03T00:05:58.000Z",
+      "title": "What HN users don't mean to be",
+      "url": "http://www.hnsearch.com/search#request/all\u0026q=%22I+don%27t+mean+to+be%22\u0026sortby=create_ts+asc",
+      "author": "pg",
+      "points": 434,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 130,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1330733158,
+      "relevancy_score": 3778,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_3658860"
+      ],
+      "objectID": "3658860",
+      "_highlightResult": {
+        "title": {
+          "value": "What HN users don't mean to be",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://www.hnsearch.com/search#request/all\u0026q=%22I+don%27t+mean+to+be%22\u0026sortby=create_ts+asc",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2011-08-08T23:57:18.000Z",
+      "title": "Warn HN: Lots of Launches Coming",
+      "url": "",
+      "author": "pg",
+      "points": 423,
+      "story_text": "Every cycle we warn startups not to wait\ntill 2 weeks before Demo Day to launch if they can\navoid it, because there's always a glut of startups\nlaunching then.  Every cycle they do anyway.\u003cp\u003eIt's now 2 weeks before Demo Day, so there are \ngoing to be a lot of new startups launching in the\ncoming week.\u003cp\u003ePlease be nice to them.  For you their launch may be\n\"yet another YC startup,\" but for each individual startup\nthis is their big moment.",
+      "comment_text": null,
+      "num_comments": 92,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1312847838,
+      "relevancy_score": 3388,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_2862067"
+      ],
+      "objectID": "2862067",
+      "_highlightResult": {
+        "title": {
+          "value": "Warn HN: Lots of Launches Coming",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "Every cycle we warn startups not to wait\ntill 2 weeks before Demo Day to launch if they can\navoid it, because there's always a glut of startups\nlaunching then.  Every cycle they do anyway.\u003cp\u003eIt's now 2 weeks before Demo Day, so there are \ngoing to be a lot of new startups launching in the\ncoming week.\u003cp\u003ePlease be nice to them.  For you their launch may be\n\"yet another YC startup,\" but for each individual startup\nthis is their big moment.",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-10-18T17:06:39.000Z",
+      "title": "Why we revert to original titles",
+      "url": "",
+      "author": "pg",
+      "points": 414,
+      "story_text": "In the HN guidelines, we ask submitters to use original titles when\npossible.  When they don\u0026#x27;t, we often change the title of a post\nback to the original title of the article.\u003cp\u003eThere is an ongoing trickle of complaints about this, as if we were\nengaged in some sort of sinister conspiracy.\u003cp\u003eTitles on HN are not self-expression the way comments are.  Titles\nare common property.  The person who happens to submit something\nfirst shouldn\u0026#x27;t thereby get the right to choose the title for\neveryone else. This would be clearer if we didn\u0026#x27;t let submitters\nenter a title-- if our software simply let people submit urls, and\nretrieved the title from the page.  We don\u0026#x27;t do this because it\u0026#x27;s\ntoo inflexible.  Some articles have titles that are too long.  In\nothers the subtitle makes a better title.  But the fact that a title\nfield is editable doesn\u0026#x27;t make it comment.\u003cp\u003eIt\u0026#x27;s true that when submitters change titles, their new titles often\ncontain more information than the article\u0026#x27;s original title.  But a\nsignificant percentage of the extra information added in this way\nis false.  The only way we can tell if a newly created title is\naccurate is to read the article, and we\u0026#x27;re not about to read every\narticle submitted to HN.    The only option is to revert to the\noriginal title, which is at least what the author intended.\u003cp\u003e(We do sometimes change titles from the original when the original\ntitle is egregious linkbait, or false.  We have also, since the\nbeginning when our users were largely YC alumni, put e.g. (YC S13)\nafter the names of YC companies in titles.  But these are not the\ntypes of changes users mean when they complain about moderators\nchanging titles.)\u003cp\u003eIf we had infinite attention to spend on moderation, we could read\nevery article and decide whether each user-created title was better\nthan the original title.  But we don\u0026#x27;t.  Moderating HN is no one\u0026#x27;s\nfull time job.  And frankly it\u0026#x27;s not that big a deal anyway.  If\nwe\u0026#x27;re going to expend cycles trying to fix something about HN, the\nincreasing prevalence of mean and stupid comments has a much higher\npriority than the fact that authors\u0026#x27; original titles are not maximally\ninformative.",
+      "comment_text": null,
+      "num_comments": 219,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1382115999,
+      "relevancy_score": 4920,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_6572466"
+      ],
+      "objectID": "6572466",
+      "_highlightResult": {
+        "title": {
+          "value": "Why we revert to original titles",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "In the HN guidelines, we ask submitters to use original titles when\npossible.  When they don't, we often change the title of a post\nback to the original title of the article.\u003cp\u003eThere is an ongoing trickle of complaints about this, as if we were\nengaged in some sort of sinister conspiracy.\u003cp\u003eTitles on HN are not self-expression the way comments are.  Titles\nare common property.  The person who happens to submit something\nfirst shouldn't thereby get the right to choose the title for\neveryone else. This would be clearer if we didn't let submitters\nenter a title-- if our software simply let people submit urls, and\nretrieved the title from the page.  We don't do this because it's\ntoo inflexible.  Some articles have titles that are too long.  In\nothers the subtitle makes a better title.  But the fact that a title\nfield is editable doesn't make it comment.\u003cp\u003eIt's true that when submitters change titles, their new titles often\ncontain more information than the article's original title.  But a\nsignificant percentage of the extra information added in this way\nis false.  The only way we can tell if a newly created title is\naccurate is to read the article, and we're not about to read every\narticle submitted to HN.    The only option is to revert to the\noriginal title, which is at least what the author intended.\u003cp\u003e(We do sometimes change titles from the original when the original\ntitle is egregious linkbait, or false.  We have also, since the\nbeginning when our users were largely YC alumni, put e.g. (YC S13)\nafter the names of YC companies in titles.  But these are not the\ntypes of changes users mean when they complain about moderators\nchanging titles.)\u003cp\u003eIf we had infinite attention to spend on moderation, we could read\nevery article and decide whether each user-created title was better\nthan the original title.  But we don't.  Moderating HN is no one's\nfull time job.  And frankly it's not that big a deal anyway.  If\nwe're going to expend cycles trying to fix something about HN, the\nincreasing prevalence of mean and stupid comments has a much higher\npriority than the fact that authors' original titles are not maximally\ninformative.",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2013-08-01T16:38:01.000Z",
+      "title": "Google Pressure Cookers and Backpacks, Get a Visit from the Feds",
+      "url": "http://www.theatlanticwire.com/national/2013/08/government-knocking-doors-because-google-searches/67864/",
+      "author": "pg",
+      "points": 414,
+      "story_text": "",
+      "comment_text": null,
+      "num_comments": 216,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1375375081,
+      "relevancy_score": 4772,
+      "_tags": [
+        "story",
+        "author_pg",
+        "story_6141505"
+      ],
+      "objectID": "6141505",
+      "_highlightResult": {
+        "title": {
+          "value": "Google Pressure Cookers and Backpacks, Get a Visit from the Feds",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "url": {
+          "value": "http://www.theatlanticwire.com/national/2013/08/government-knocking-doors-because-google-searches/67864/",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "author": {
+          "value": "pg",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_text": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    }
+  ],
+  "nbHits": 696,
+  "page": 0,
+  "nbPages": 35,
+  "hitsPerPage": 20,
+  "processingTimeMS": 2,
+  "exhaustiveNbHits": true,
+  "query": "",
+  "params": "advancedSyntax=true\u0026analytics=false\u0026tags=story%2Cauthor_pg"
+}
