@@ -77,7 +77,7 @@ async () => {
   })
 
   return new Promise((resolve, reject) => {
-    eventBus.on(`uid-${uid}`, (resp) => {
+    eventBus.once(`uid-${uid}`, (resp) => {
       worker.active -= 1
       worker.achieved += 1
 
