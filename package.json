@@ -1,7 +1,7 @@
 {
   "name": "node-routine",
   "description": "A library to implement Goroutine-Like API with worker threads.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "author": {
     "name": "Joway Wang",
@@ -26,7 +26,7 @@
     "worker_threads"
   ],
   "scripts": {
-    "bench": "npm run build && jest --detectOpenHandles --verbose --testRegex=./bench/*.ts",
+    "bench": "npm run build && jest --detectOpenHandles --verbose --testRegex=./bench/",
     "test": "npm run build && jest --detectOpenHandles --verbose",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && tsc",
@@ -50,8 +50,5 @@
     "tslint-jike-node": "0.0.17",
     "typedoc": "^0.15.0",
     "typescript": "^3.3.4000"
-  },
-  "dependencies": {
-    "fast-json-stringify": "^1.15.4"
   }
 }
