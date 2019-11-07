@@ -1,7 +1,6 @@
 import * as path from 'path'
 import { EventEmitter } from 'events'
 import { Worker } from 'worker_threads'
-import * as fastJson from 'fast-json-stringify'
 import * as crypto from 'crypto'
 
 /** Setting of worker threads pool */
@@ -58,7 +57,7 @@ export async function go(handler: Function, context: Object = {}) {
   let definition = ''
   for (const key in context) {
     if (!context.hasOwnProperty(key) || !context[key]) continue
-    definition += `const ${key} = ${fastJson(context[key])};\n`
+    definition += `const ${key} = ${JSON.stringify(context[key])};\n`
   }
   const routineStr = `
 async () => {

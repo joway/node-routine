@@ -50,8 +50,5 @@
     "tslint-jike-node": "0.0.17",
     "typedoc": "^0.15.0",
     "typescript": "^3.3.4000"
-  },
-  "dependencies": {
-    "fast-json-stringify": "^1.15.4"
   }
 }
