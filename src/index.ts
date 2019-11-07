@@ -58,7 +58,6 @@ export async function go(handler: Function, context: Object = {}) {
   let definition = ''
   for (const key in context) {
     if (!context.hasOwnProperty(key) || !context[key]) continue
-    console.log(key)
     definition += `const ${key} = ${fastJson(context[key])};\n`
   }
   const routineStr = `
