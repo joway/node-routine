@@ -26,7 +26,7 @@
     "worker_threads"
   ],
   "scripts": {
-    "bench": "npm run build && jest --detectOpenHandles --verbose --testRegex=./bench/*.ts",
+    "bench": "npm run build && jest --detectOpenHandles --verbose --testRegex=./bench/",
     "test": "npm run build && jest --detectOpenHandles --verbose",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && tsc",
