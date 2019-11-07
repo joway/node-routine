@@ -1,7 +1,7 @@
 {
   "name": "node-routine",
   "description": "A library to implement Goroutine-Like API with worker threads.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "author": {
     "name": "Joway Wang",
