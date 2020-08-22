@@ -1,7 +1,6 @@
 import * as path from 'path'
 import { EventEmitter } from 'events'
 import { Worker } from 'worker_threads'
-import * as crypto from 'crypto'
 
 /** Setting of worker threads pool */
 export interface WorkerPoolSetting {
@@ -20,6 +19,7 @@ const workerPool: WorkerState[] = []
 const workerPoolSetting: WorkerPoolSetting = {
   maxWorkerThreads: 4,
 }
+let _uidCount = 0
 
 /**
  * @param setting  Custom setting
@@ -103,5 +103,6 @@ function selectWorker() {
 }
 
 function genUid() {
-  return crypto.randomBytes(12).toString('hex')
+  _uidCount++
+  return _uidCount.toString(16)
 }
